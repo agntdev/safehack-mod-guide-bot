@@ -1,19 +1,12 @@
 [
   {
-    "name": "Modding",
+    "name": "Modding shows resources",
     "steps": [
       {
+        "send": { "callback": "topic:modding" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Browse modding resources"
-            }
-          }
-        ],
-        "send": {
-          "callback": "topic:modding"
-        }
+          { "method": "sendMessage", "payload": { "text": "📖 Game Modding with Cheat Engine\n\nLearn how to use Cheat Engine for game memory editing and modding single-player games.\n\n🔗 https://www.cheatengine.org\n\n#memory-editing #game #beginner" } }
+        ]
       }
     ]
   }

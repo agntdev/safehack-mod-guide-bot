@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Report button prompts for reason",
+    "steps": [
+      {
+        "send": { "callback": "report:start:https://owasp.org/www-project-top-ten/" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "You're reporting: OWASP Top 10 Web Application Security Risks\n\nWhy are you reporting this resource?" } }
+        ]
+      }
+    ]
+  }
+]

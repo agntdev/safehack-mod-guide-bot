@@ -1,19 +1,12 @@
 [
   {
-    "name": "Tools \u0026 Frameworks",
+    "name": "Tools shows resources",
     "steps": [
       {
+        "send": { "callback": "topic:tools" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Discover tools and frameworks"
-            }
-          }
-        ],
-        "send": {
-          "callback": "topic:tools"
-        }
+          { "method": "sendMessage", "payload": { "text": "📖 Burp Suite: Web Vulnerability Scanner\n\nLeading software for web application security testing, used by professionals and learners alike.\n\n🔗 https://portswigger.net/burp\n\n#web #scanner #professional" } }
+        ]
       }
     ]
   }
