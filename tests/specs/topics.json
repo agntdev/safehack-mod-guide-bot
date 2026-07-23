@@ -1,0 +1,20 @@
+[
+  {
+    "name": "/topics",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Browse available topics"
+            }
+          }
+        ],
+        "send": {
+          "text": "/topics"
+        }
+      }
+    ]
+  }
+]
