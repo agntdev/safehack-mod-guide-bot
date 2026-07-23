@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Modding",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Browse modding resources"
+            }
+          }
+        ],
+        "send": {
+          "callback": "topic:modding"
+        }
+      }
+    ]
+  }
+]
