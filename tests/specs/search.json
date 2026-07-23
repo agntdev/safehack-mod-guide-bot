@@ -1,19 +1,23 @@
 [
   {
-    "name": "/search",
+    "name": "/search prompts for query",
     "steps": [
       {
+        "send": { "text": "/search" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Search for resources by query"
-            }
-          }
-        ],
-        "send": {
-          "text": "/search"
-        }
+          { "method": "sendMessage", "payload": { "text": "What are you looking for? Type your search query below." } }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Search menu button prompts for query",
+    "steps": [
+      {
+        "send": { "callback": "search:prompt" },
+        "expect": [
+          { "method": "editMessageText", "payload": { "text": "What are you looking for? Type your search query below." } }
+        ]
       }
     ]
   }

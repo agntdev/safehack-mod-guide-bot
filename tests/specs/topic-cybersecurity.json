@@ -1,19 +1,12 @@
 [
   {
-    "name": "Cybersecurity",
+    "name": "Cybersecurity shows resources",
     "steps": [
       {
+        "send": { "callback": "topic:cybersecurity" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Browse cybersecurity resources"
-            }
-          }
-        ],
-        "send": {
-          "callback": "topic:cybersecurity"
-        }
+          { "method": "sendMessage", "payload": { "text": "📖 OWASP Top 10 Web Application Security Risks\n\nThe standard awareness document for web application security, representing a broad consensus about the most critical risks.\n\n🔗 https://owasp.org/www-project-top-ten/\n\n#web #owasp #beginner" } }
+        ]
       }
     ]
   }

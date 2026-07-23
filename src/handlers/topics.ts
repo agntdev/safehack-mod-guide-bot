@@ -1,15 +1,27 @@
 import { Composer } from "grammy";
+import type { Ctx } from "../bot.js";
+import { registerMainMenuItem, inlineButton, inlineKeyboard } from "../toolkit/index.js";
+import { TOPICS } from "../data/resources.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
+registerMainMenuItem({ label: "📚 Browse Topics", data: "topics:list", order: 5 });
 
-const composer = new Composer();
+const composer = new Composer<Ctx>();
 
 composer.command("topics", async (ctx) => {
-  await ctx.reply("Browse available topics");
+  const buttons = TOPICS.map((t) => [inlineButton(`${t.emoji} ${t.name}`, `topic:${t.id}`)]);
+  buttons.push([inlineButton("⬅️ Back to menu", "menu:main")]);
+  await ctx.reply("Choose a topic to explore:", {
+    reply_markup: inlineKeyboard(buttons),
+  });
+});
+
+composer.callbackQuery("topics:list", async (ctx) => {
+  await ctx.answerCallbackQuery();
+  const buttons = TOPICS.map((t) => [inlineButton(`${t.emoji} ${t.name}`, `topic:${t.id}`)]);
+  buttons.push([inlineButton("⬅️ Back to menu", "menu:main")]);
+  await ctx.editMessageText("Choose a topic to explore:", {
+    reply_markup: inlineKeyboard(buttons),
+  });
 });
 
 export default composer;

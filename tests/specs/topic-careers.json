@@ -1,19 +1,12 @@
 [
   {
-    "name": "Careers",
+    "name": "Careers shows resources",
     "steps": [
       {
+        "send": { "callback": "topic:careers" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Explore career paths in cybersecurity"
-            }
-          }
-        ],
-        "send": {
-          "callback": "topic:careers"
-        }
+          { "method": "sendMessage", "payload": { "text": "📖 Cybersecurity Career Roadmap\n\nComprehensive guide to building a career in cybersecurity, from entry-level to expert.\n\n🔗 https://www.cyberseek.org\n\n#career #certification #roadmap" } }
+        ]
       }
     ]
   }

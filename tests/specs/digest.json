@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Digest menu button shows subscription options",
+    "steps": [
+      {
+        "send": { "callback": "digest:manage" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Get curated resources delivered to you regularly." } }
+        ]
+      }
+    ]
+  }
+]

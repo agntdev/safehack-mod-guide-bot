@@ -1,19 +1,12 @@
 [
   {
-    "name": "Communities",
+    "name": "Communities shows resources",
     "steps": [
       {
+        "send": { "callback": "topic:communities" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Join and explore communities"
-            }
-          }
-        ],
-        "send": {
-          "callback": "topic:communities"
-        }
+          { "method": "sendMessage", "payload": { "text": "📖 Reddit r/netsec Community\n\nActive community discussing news, research, and tools in network security.\n\n🔗 https://www.reddit.com/r/netsec/\n\n#reddit #discussion #news" } }
+        ]
       }
     ]
   }

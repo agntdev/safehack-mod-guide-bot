@@ -1,19 +1,26 @@
 [
   {
-    "name": "/topics",
+    "name": "/topics shows topic list",
     "steps": [
       {
+        "send": { "text": "/topics" },
         "expect": [
           {
             "method": "sendMessage",
-            "payload": {
-              "text": "Browse available topics"
-            }
+            "payload": { "text": "Choose a topic to explore:" }
           }
-        ],
-        "send": {
-          "text": "/topics"
-        }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Topics menu button shows topic list",
+    "steps": [
+      {
+        "send": { "callback": "topics:list" },
+        "expect": [
+          { "method": "editMessageText" }
+        ]
       }
     ]
   }

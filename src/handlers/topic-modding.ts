@@ -1,17 +1,32 @@
 import { Composer } from "grammy";
+import type { Ctx } from "../bot.js";
+import { registerMainMenuItem, inlineButton, inlineKeyboard } from "../toolkit/index.js";
+import { getResourcesByTopic, formatResourceCard } from "../data/resources.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
-// Menu: wire this into /start via registerMainMenuItem({ label: "Modding", data: "topic:modding" }) if the toolkit exposes it.
+registerMainMenuItem({ label: "🎮 Modding", data: "topic:modding", order: 20 });
 
-const composer = new Composer();
+const composer = new Composer<Ctx>();
 
 composer.callbackQuery("topic:modding", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("Browse modding resources");
+  const resources = getResourcesByTopic("modding");
+  if (resources.length === 0) {
+    await ctx.reply("No modding resources available yet. Check back soon!", {
+      reply_markup: inlineKeyboard([[inlineButton("⬅️ Back to menu", "menu:main")]]),
+    });
+    return;
+  }
+  for (const resource of resources) {
+    await ctx.reply(formatResourceCard(resource), {
+      reply_markup: inlineKeyboard([
+        [
+          inlineButton("🔖 Save", `bookmark:add:${resource.url}`),
+          inlineButton("🚩 Report", `report:start:${resource.url}`),
+        ],
+        [inlineButton("⬅️ Back to menu", "menu:main")],
+      ]),
+    });
+  }
 });
 
 export default composer;
